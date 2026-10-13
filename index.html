@@ -11,7 +11,7 @@
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px}
 nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0 0;gap:12px;flex-wrap:wrap}
 nav b{font-weight:650}
 .tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-top:14px;overflow-x:auto}
@@ -23,7 +23,7 @@ nav b{font-weight:650}
 h1{font-size:clamp(32px,6vw,50px);line-height:1.1;margin:0 0 16px;letter-spacing:-.02em}
 h2{font-size:28px;margin:0 0 10px}
 .lead{font-size:18px;color:var(--muted);max-width:640px;margin:0 0 26px}
-.btn{display:inline-block;padding:10px 18px;border-radius:8px;border:1px solid var(--accent);color:var(--accent);background:none;font:inherit;font-weight:600;text-decoration:none;margin:0 10px 10px 0;cursor:pointer}
+.btn{display:inline-block;padding:12px 26px;border-radius:8px;border:1px solid var(--accent);color:var(--accent);background:none;font:inherit;font-weight:600;text-decoration:none;margin:0 10px 10px 0;cursor:pointer}
 .btn.p{background:var(--accent);color:var(--bg)}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:22px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px}
@@ -37,18 +37,21 @@ h2{font-size:28px;margin:0 0 10px}
 footer{padding:28px 0 48px;border-top:1px solid var(--line);color:var(--muted);font-size:15px}
 footer a{color:var(--accent)}
 .stage{display:flex;flex-direction:column;align-items:center;padding:20px 0}
-.scene{width:160px;height:160px;perspective:700px;margin:30px 0 40px;cursor:grab;touch-action:none;user-select:none}.scene:active{cursor:grabbing}
+.scene{width:300px;height:300px;perspective:1400px;margin:50px 0 60px;cursor:grab;touch-action:none;user-select:none}.scene:active{cursor:grabbing}
 .cube{width:100%;height:100%;position:relative;transform-style:preserve-3d;transform:rotateX(-20deg) rotateY(-30deg);transition:transform 1.8s cubic-bezier(.2,.7,.2,1)}
-.face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:#d9d9d6;color:#1b1d1f;border:3px solid #1b1d1f;border-radius:22px;font-weight:700;font-size:17px;backface-visibility:hidden}
-.face span{font-size:44px;line-height:1}
-.f0{transform:translateZ(80px)}
-.f1{transform:rotateY(90deg) translateZ(80px)}
-.f2{transform:rotateY(180deg) translateZ(80px)}
-.f3{transform:rotateY(-90deg) translateZ(80px)}
-.f4{transform:rotateX(90deg) translateZ(80px)}
-.f5{transform:rotateX(-90deg) translateZ(80px)}
+.face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:#d9d9d6;color:#1b1d1f;border:4px solid #1b1d1f;border-radius:40px;font-weight:700;font-size:30px;backface-visibility:hidden}
+.face span{font-size:84px;line-height:1}
+.f0{transform:translateZ(150px)}
+.f1{transform:rotateY(90deg) translateZ(150px)}
+.f2{transform:rotateY(180deg) translateZ(150px)}
+.f3{transform:rotateY(-90deg) translateZ(150px)}
+.f4{transform:rotateX(90deg) translateZ(150px)}
+.f5{transform:rotateX(-90deg) translateZ(150px)}
 .result{margin:6px 0 0;color:var(--muted);min-height:48px;text-align:center}
 .result a{color:var(--accent);font-weight:600}
+.more{display:inline-block;margin-top:4px;color:var(--accent);font-weight:600;text-decoration:none}.more:hover{text-decoration:underline}
+.btn{font-size:18px}
+.result{font-size:17px}
 </style>
 </head>
 <body>
@@ -91,11 +94,12 @@ footer a{color:var(--accent)}
 
 <div class="panel" id="projects">
 <h2>Projects</h2>
-<p class="lead">Things I'm currently building or planning.</p>
+<p class="lead">Full-stack and backend projects I've built, with the code on GitHub.</p>
 <div class="grid">
-<div class="card soon"><h3>TradeDrop</h3><p>Rideshare-style delivery for tradespeople: a plumber mid-job gets a part picked up from a store and dropped at the site.</p><div class="tags"><span>TypeScript</span><span>Express</span><span>Drizzle</span><span>Tailwind</span></div></div>
-<div class="card soon"><h3>IoT Smart Thermostat</h3><p>A client app sets a property's temperature through a server, which signals a room's controller and control valve.</p><div class="tags"><span>IoT</span><span>APIs</span></div></div>
-<div class="card soon"><h3>Guitar Tab Transcription</h3><p>Turns guitar audio into string/fret output using Basic Pitch, with Demucs for source separation and a Viterbi-style fretboard assignment.</p><div class="tags"><span>Python</span><span>Basic Pitch</span><span>Demucs</span></div></div>
+<div class="card"><h3>EventFlow</h3><p>Distributed event streaming platform: a producer streams synthetic user events through Kafka to a consumer that stores them in PostgreSQL, and a FastAPI service exposes real-time analytics.</p><div class="tags"><span>Python</span><span>Kafka</span><span>PostgreSQL</span><span>FastAPI</span><span>Docker</span></div><a class="more" href="https://github.com/eitancohen77/Event-Flow">View on GitHub &rarr;</a></div>
+<div class="card"><h3>Snowboarder Handbook</h3><p>Search for snowboarding and ski gear and compare prices across retailers, plus a US ski resort map with Peak Rating data. Results are cached in Postgres so repeated searches don't burn API credits.</p><div class="tags"><span>FastAPI</span><span>PostgreSQL</span><span>SQLAlchemy</span><span>SerpApi</span></div><a class="more" href="https://github.com/eitancohen77/snowboarder-handbook">View on GitHub &rarr;</a></div>
+<div class="card"><h3>Man vs Machine: Connect 4</h3><p>A chess.com-style site for Connect 4 with intelligent agents to play against, user accounts, profile and game customization, and saved game history.</p><div class="tags"><span>Node.js</span><span>Express</span><span>MongoDB</span><span>bcrypt</span><span>jQuery</span></div><a class="more" href="https://github.com/eitancohen77/Man-vs-Machine-Connect-4-edition">View on GitHub &rarr;</a></div>
+<div class="card"><h3>Calisthenics Progression</h3><p>A Next.js and TypeScript app for calisthenics skill progressions, currently a working skeleton for the handstand route.</p><div class="tags"><span>Next.js</span><span>TypeScript</span></div><a class="more" href="https://github.com/eitancohen77/Calisthenics-Progression-/tree/main/calisthenics_progression">View on GitHub &rarr;</a></div>
 </div>
 </div>
 
