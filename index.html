@@ -1,25 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Eitan Cohen — Backend & Distributed Systems</title>
+<style>
+:root{--bg:#fafaf7;--card:#fff;--text:#1b1d1f;--muted:#5d6368;--line:#e3e3dc;--accent:#0f6b5c;--tag:#e6f2ef;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121415;--card:#1a1d1f;--text:#eceeed;--muted:#9aa3a8;--line:#2a2f32;--accent:#4fd1b5;--tag:#17302b;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121415;--card:#1a1d1f;--text:#eceeed;--muted:#9aa3a8;--line:#2a2f32;--accent:#4fd1b5;--tag:#17302b;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0 0;gap:12px;flex-wrap:wrap}
+nav b{font-weight:650}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-top:14px;overflow-x:auto}
+.tab{background:none;border:0;border-bottom:2px solid transparent;color:var(--muted);font:inherit;font-weight:600;padding:10px 16px;cursor:pointer;white-space:nowrap}
+.tab:hover{color:var(--accent)}
+.tab[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
+.panel{display:none;padding:36px 0 56px}
+.panel.on{display:block}
+h1{font-size:clamp(32px,6vw,50px);line-height:1.1;margin:0 0 16px;letter-spacing:-.02em}
+h2{font-size:28px;margin:0 0 10px}
+.lead{font-size:18px;color:var(--muted);max-width:640px;margin:0 0 26px}
+.btn{display:inline-block;padding:10px 18px;border-radius:8px;border:1px solid var(--accent);color:var(--accent);background:none;font:inherit;font-weight:600;text-decoration:none;margin:0 10px 10px 0;cursor:pointer}
+.btn.p{background:var(--accent);color:var(--bg)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px}
+.card h3{margin:0 0 6px;font-size:18px}
+.card p{margin:0 0 12px;color:var(--muted);font-size:15px}
+.tags span{display:inline-block;background:var(--tag);color:var(--accent);font-size:12px;font-weight:600;padding:2px 9px;border-radius:99px;margin:0 6px 6px 0}
+.stat{color:var(--text)!important}
+.stat b{color:var(--accent)}
+.soon{border-style:dashed}
+.link{color:var(--accent);font-weight:600;cursor:pointer;background:none;border:0;font:inherit;padding:0}
+footer{padding:28px 0 48px;border-top:1px solid var(--line);color:var(--muted);font-size:15px}
+footer a{color:var(--accent)}
+.stage{display:flex;flex-direction:column;align-items:center;padding:20px 0}
+.scene{width:160px;height:160px;perspective:700px;margin:30px 0 40px;cursor:grab;touch-action:none;user-select:none}.scene:active{cursor:grabbing}
+.cube{width:100%;height:100%;position:relative;transform-style:preserve-3d;transform:rotateX(-20deg) rotateY(-30deg);transition:transform 1.8s cubic-bezier(.2,.7,.2,1)}
+.face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:#d9d9d6;color:#1b1d1f;border:3px solid #1b1d1f;border-radius:22px;font-weight:700;font-size:17px;backface-visibility:hidden}
+.face span{font-size:44px;line-height:1}
+.f0{transform:translateZ(80px)}
+.f1{transform:rotateY(90deg) translateZ(80px)}
+.f2{transform:rotateY(180deg) translateZ(80px)}
+.f3{transform:rotateY(-90deg) translateZ(80px)}
+.f4{transform:rotateX(90deg) translateZ(80px)}
+.f5{transform:rotateX(-90deg) translateZ(80px)}
+.result{margin:6px 0 0;color:var(--muted);min-height:48px;text-align:center}
+.result a{color:var(--accent);font-weight:600}
+</style>
 </head>
-
 <body>
-  <div id="navbar"></div>
-    <script>
-    fetch("assets/navbar.html")
-        .then(res => res.text())
-        .then(html => document.getElementById("navbar").innerHTML = html);
-    </script>
+<div class="wrap">
+<nav><b>Eitan Cohen</b></nav>
+<div class="tabs" role="tablist">
+<button class="tab" role="tab" data-t="home">Home</button>
+<button class="tab" role="tab" data-t="design">System Design</button>
+<button class="tab" role="tab" data-t="projects">Projects</button>
+</div>
 
-  <!-- MAIN HERO SECTION -->
-  <div class="hero">
-    <h1>Eitan Cohen</h1>
-    <h3><b>Software Engineer</b></h3>
-  </div>
+<div class="panel" id="home">
+<h1>Roll the dice.</h1>
+<p class="lead">I'm Eitan, a backend developer who builds and explains distributed systems. Click any face to jump there, or let the die decide.</p>
+<div class="stage"><div class="scene"><div class="cube" id="cube">
+<div class="face f0"><span>🛠</span>Projects</div>
+<div class="face f1"><span>⌥</span>GitHub</div>
+<div class="face f2"><span>🧩</span>System Design</div>
+<div class="face f3"><span>in</span>LinkedIn</div>
+<div class="face f4"><span>🛠</span>Projects</div>
+<div class="face f5"><span>🧩</span>System Design</div>
+</div></div>
+<button class="btn p" id="roll">Roll</button>
+<p class="result" id="result" aria-live="polite">Drag the die to spin it, click a face to open it, or hit Roll.</p></div>
+</div>
 
+<div class="panel" id="design">
+<h2>System Design</h2>
+<p class="lead">Each demo is a working Python project built to show one idea in action. The written notes explain the reasoning behind them.</p>
+<a class="btn p" href="https://eitancohen77.github.io/System-Design/">Read the notes</a>
+<a class="btn" href="https://github.com/eitancohen77">Code on GitHub</a>
+<div class="grid">
+<div class="card"><h3>CAP Theorem</h3><p>Hands-on demonstration of the consistency / availability / partition-tolerance trade-off across networked nodes.</p><div class="tags"><span>Python</span><span>Nodes</span></div></div>
+<div class="card"><h3>Consistency Patterns</h3><p>Strong vs eventual consistency using a book-inventory race-condition scenario, with timed requests to compare speed against accuracy.</p><div class="tags"><span>Python</span><span>Strong</span><span>Eventual</span></div></div>
+<div class="card"><h3>Availability &amp; Failover</h3><p>Active-passive failover over real HTTP: the standby polls the active node, takes over on failure, and fails back when the original returns. Data survives via a separate inventory service.</p><div class="tags"><span>stdlib http.server</span><span>Failover</span><span>CLI client</span></div></div>
+<div class="card"><h3>Database Replication</h3><p>Single database vs master-slave read replicas, then geo-distributed master-master (NY + Tokyo) with periodic async sync.</p><p class="stat"><b>3.38x</b> faster reads with 3 replicas (11.19s &rarr; 3.31s)</p><div class="tags"><span>FastAPI</span><span>httpx</span><span>asyncio</span></div></div>
+</div>
+<div class="card" style="margin-top:16px"><h3>Coming next</h3><p style="margin:0">All remaining core system design topics, followed by real-world case studies of engineering decisions: the reasoning, the trade-offs, and what was gained and lost.</p></div>
+</div>
+
+<div class="panel" id="projects">
+<h2>Projects</h2>
+<p class="lead">Things I'm currently building or planning.</p>
+<div class="grid">
+<div class="card soon"><h3>TradeDrop</h3><p>Rideshare-style delivery for tradespeople: a plumber mid-job gets a part picked up from a store and dropped at the site.</p><div class="tags"><span>TypeScript</span><span>Express</span><span>Drizzle</span><span>Tailwind</span></div></div>
+<div class="card soon"><h3>IoT Smart Thermostat</h3><p>A client app sets a property's temperature through a server, which signals a room's controller and control valve.</p><div class="tags"><span>IoT</span><span>APIs</span></div></div>
+<div class="card soon"><h3>Guitar Tab Transcription</h3><p>Turns guitar audio into string/fret output using Basic Pitch, with Demucs for source separation and a Viterbi-style fretboard assignment.</p><div class="tags"><span>Python</span><span>Basic Pitch</span><span>Demucs</span></div></div>
+</div>
+</div>
+
+<footer>Find the code on <a href="https://github.com/eitancohen77">github.com/eitancohen77</a>.</footer>
+</div>
+<script>
+(function(){
+var names=["home","design","projects"];
+function show(n){
+  if(names.indexOf(n)<0)n="home";
+  names.forEach(function(x){
+    document.getElementById(x).classList.toggle("on",x===n);
+  });
+  document.querySelectorAll(".tab").forEach(function(b){
+    b.setAttribute("aria-selected",b.dataset.t===n?"true":"false");
+  });
+  window.scrollTo(0,0);
+}
+function go(n){ try{history.replaceState(null,"","#"+n);}catch(e){} show(n); }
+document.querySelectorAll("[data-t]").forEach(function(b){b.addEventListener("click",function(){go(b.dataset.t);});});
+document.querySelectorAll("[data-go]").forEach(function(b){b.addEventListener("click",function(){go(b.dataset.go);});});
+show((location.hash||"").replace("#",""));
+
+var LINKEDIN="https://www.linkedin.com/in/"; /* put your full LinkedIn profile URL here */
+var GITHUB="https://github.com/eitancohen77";
+var faces=[{n:"Projects",tab:"projects",x:0,y:0},{n:"GitHub",url:GITHUB,x:0,y:-90},{n:"System Design",tab:"design",x:0,y:-180},{n:"LinkedIn",url:LINKEDIN,x:0,y:90},{n:"Projects",tab:"projects",x:-90,y:0},{n:"System Design",tab:"design",x:90,y:0}];
+var cube=document.getElementById("cube"),res=document.getElementById("result"),rolling=false,cx=-20,cy=-30,spins=0;
+function roll(){
+  if(rolling)return; rolling=true;
+  var f=faces[Math.floor(Math.random()*faces.length)];
+  spins+=2;
+  cx=f.x-360*spins; cy=f.y+360*spins;
+  cube.style.transform="rotateX("+cx+"deg) rotateY("+cy+"deg)";
+  res.textContent="Rolling...";
+  setTimeout(function(){
+    if(f.tab){
+      res.textContent="Landed on "+f.n+". Taking you there...";
+      setTimeout(function(){rolling=false;go(f.tab);},900);
+    }else{
+      res.innerHTML="Landed on "+f.n+'. Taking you there... <a href="'+f.url+'" target="_blank" rel="noopener">Open '+f.n+'</a>';
+      setTimeout(function(){rolling=false;try{window.open(f.url,"_blank","noopener");}catch(e){}},900);
+    }
+  },1900);
+}
+document.getElementById("roll").addEventListener("click",roll);
+var scene=document.querySelector(".scene"),dn=false,mv=0,lx=0,ly=0,tf=null;
+scene.addEventListener("pointerdown",function(e){if(rolling)return;dn=true;mv=0;lx=e.clientX;ly=e.clientY;var fe=e.target.closest&&e.target.closest(".face");tf=fe?parseInt(fe.className.match(/f(\d)/)[1],10):null;try{scene.setPointerCapture(e.pointerId);}catch(x){}});
+scene.addEventListener("pointermove",function(e){
+  if(!dn)return;
+  var dx=e.clientX-lx,dy=e.clientY-ly;lx=e.clientX;ly=e.clientY;
+  mv+=Math.abs(dx)+Math.abs(dy);
+  if(mv>5){cube.style.transition="none";cy+=dx*0.6;cx-=dy*0.6;cube.style.transform="rotateX("+cx+"deg) rotateY("+cy+"deg)";}
+});
+function up(){if(!dn)return;dn=false;cube.style.transition="";if(mv<=5&&tf!==null){var f=faces[tf];if(f.tab){go(f.tab);}else{var w=null;try{w=window.open(f.url,"_blank","noopener");}catch(x){}if(!w){res.innerHTML='<a href="'+f.url+'" target="_blank" rel="noopener">Open '+f.n+'</a>';}}}}
+scene.addEventListener("pointerup",up);
+scene.addEventListener("pointercancel",function(){dn=false;cube.style.transition="";});
+})();
+</script>
 </body>
 </html>

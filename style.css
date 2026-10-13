@@ -66,3 +66,70 @@ body {
   max-width: 500px;
   margin: auto;
 }
+
+.wheel-wrapper {
+      width: 320px;
+  height: 320px;
+  margin: 60px auto 0;      /* auto left/right centers the block */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;  
+    }
+
+    .wheel {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      border: 8px solid #111827;
+      background:
+        conic-gradient(
+          #3b82f6 0 60deg,
+          #0ea5e9 60deg 120deg,
+          #22c55e 120deg 180deg,
+          #eab308 180deg 240deg,
+          #f97316 240deg 300deg,
+          #ef4444 300deg 360deg
+        );
+      box-shadow:
+        0 20px 40px rgba(15, 23, 42, 0.6),
+        inset 0 0 20px rgba(15, 23, 42, 0.6);
+      cursor: grab;
+      transition: box-shadow 0.15s ease;
+      user-select: none;
+      touch-action: none;
+      position: relative;
+    }
+
+    .wheel.dragging {
+      cursor: grabbing;
+      box-shadow:
+        0 26px 60px rgba(15, 23, 42, 0.8),
+        inset 0 0 25px rgba(15, 23, 42, 0.8);
+    }
+
+    /* simple center cap */
+    .wheel::after {
+      content: "";
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: radial-gradient(circle at top, #e5e7eb, #9ca3af);
+      border: 3px solid #111827;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.5);
+    }
+
+    .label {
+      position: absolute;
+  bottom: -28px;            /* just below the wheel */
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #e5e7eb;
+  font-size: 14px;
+  opacity: 0.8;
+    }
